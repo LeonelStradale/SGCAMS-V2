@@ -51,7 +51,6 @@
                             <table class="table table-responsive table-hover text-center align-items-center">
                                 <thead>
                                     <tr class="text-center">
-                                        <th>#</th>
                                         <th>Nombre</th>
                                         <th>Opciones</th>
                                     </tr>
@@ -59,8 +58,7 @@
                                 <tbody class="table-group-divider text-center">
                                     @foreach ($areas as $area)
                                         <tr>
-                                            <th scope="row">{{ $area->id }}</th>
-                                            <td>{{ $area->name }}</td>
+                                            <th scope="row">{{ $area->name }}</th>
                                             <td class="d-flex justify-content-center">
                                                 <a href="{{ route('areas.show', $area->id) }}"
                                                     class="btn btn-secondary me-2">

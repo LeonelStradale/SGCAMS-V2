@@ -38,7 +38,7 @@
                             @csrf
                             <div class="row">
                                 <!-- Nombre -->
-                                <div class="col-md-3 mb-2">
+                                <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="name">
                                             Nombre
@@ -55,44 +55,61 @@
                                     </div>
                                 </div>
                                 <!-- Área -->
-                                <div class="col-md-6 mb-2">
+                                <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="area_id">Área Administrativa</label>
-                                        <select class="form-control form-control-lg" id="area_id" name="area_id" required>
+                                        <select class="form-control form-control-lg @error('area_id') is-invalid @enderror"
+                                            id="area_id" name="area_id" required>
                                             <option selected disabled>Escoge una área</option>
                                             @foreach ($areas as $area)
                                                 <option value="{{ $area->id }}">{{ $area->name }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
-                                </div>
-                                <!-- Tipo -->
-                                <div class="col-md-3 mb-2">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="type_of_document">
-                                            Tipo de Documento
-                                        </label>
-                                        <select class="form-control form-control-lg" id="type_of_document"
-                                            name="type_of_document" required>
-                                            <option selected disabled>Escoge un tipo</option>
-                                            @foreach (DocumentType::cases() as $type)
-                                                <option value="{{ $type->value }}"
-                                                    {{ old('type_of_document') == $type->value ? 'selected' : '' }}>
-                                                    {{ $type->value }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        @error('area_id')
+                                            <span class="invalid-feedback text-center" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
+                                <!-- Tipo -->
+                                <div class="col-md-6 mb-2">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="type">
+                                            Tipo de Documento
+                                        </label>
+                                        <select class="form-control form-control-lg @error('type') is-invalid @enderror"
+                                            id="type" name="type" required>
+                                            <option selected disabled>Escoge un tipo</option>
+                                            @foreach (DocumentType::cases() as $type)
+                                                <option value="{{ $type->value }}"
+                                                    {{ old('type') == $type->value ? 'selected' : '' }}>
+                                                    {{ $type->value }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('type')
+                                            <span class="invalid-feedback text-center" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <!-- Documento -->
-                                <div class="col-md-12 mt-2">
+                                <div class="col-md-6 mb-2">
                                     <div class="form-outline">
                                         <label class="form-label" for="document">
                                             Subir archivo
                                         </label>
-                                        <input type="file" name="document" class="form-control form-control-lg">
+                                        <input type="file" name="document"
+                                            class="form-control form-control-lg @error('document') is-invalid @enderror">
+                                        @error('document')
+                                            <span class="invalid-feedback text-center" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

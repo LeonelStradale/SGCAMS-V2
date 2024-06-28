@@ -109,7 +109,7 @@
                                 <tbody class="table-group-divider text-center">
                                     @foreach ($documents as $document)
                                         <tr>
-                                            <td>{{ $document->name }}</td>
+                                            <th scope="row">{{ $document->name }}</th>
                                             <td>{{ $document->area->name }}</td>
                                             <td>
                                                 @if ($document->type == 'Documento')
@@ -117,6 +117,10 @@
                                                         {{ $document->type }}
                                                     </span>
                                                 @elseif ($document->type == 'Formato')
+                                                    <span class="badge text-bg-danger">
+                                                        {{ $document->type }}
+                                                    </span>
+                                                @elseif ($document->type == 'Excel')
                                                     <span class="badge text-bg-success">
                                                         {{ $document->type }}
                                                     </span>
@@ -134,10 +138,10 @@
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
                                                 <form action="{{ route('documents.destroy', $document->id) }}"
-                                                    method="post">
+                                                    method="post" id="delete-form-{{ $document->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">
+                                                    <button type="button" onclick="confirmDelete({{ $document->id }})" class="btn btn-danger">
                                                         Eliminar
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
@@ -156,4 +160,25 @@
             </div>
         </div>
     </div>
+
+    @push('js')
+        <script>
+            function confirmDelete(documentId) {
+                Swal.fire({
+                    title: "¿Estás seguro?",
+                    text: "¡No podrás revertir esto!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "¡Sí, bórralo!",
+                    cancelButtonText: "Cancelar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-form-' + documentId).submit();
+                    }
+                });
+            }
+        </script>
+    @endpush
 @endsection

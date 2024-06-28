@@ -36,7 +36,7 @@ class DocumentController extends Controller
         $request->validate([
             'name' => 'required|string',
             'type' => 'required|string',
-            'document' => 'required|file',
+            'document' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,csv',
             'area_id' => 'required|exists:areas,id',
         ]);
 
@@ -50,7 +50,7 @@ class DocumentController extends Controller
             $data['document'] = $fileName;
         }
 
-        Document::create($data);
+        $document = Document::create($data);
 
         session()->flash('swal', [
             'icon' => 'success',
@@ -58,7 +58,7 @@ class DocumentController extends Controller
             'text' => 'El nuevo documento se registró correctamente.'
         ]);
 
-        return redirect()->route('documents.index');
+        return redirect()->route('documents.show', $document->id);
     }
 
     /**
@@ -86,18 +86,18 @@ class DocumentController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'type_of_document' => 'required|string',
-            'document' => 'required',
+            'type' => 'required|string',
+            'document' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,csv',
             'area_id' => 'required|exists:areas,id',
         ]);
 
         $input = $request->all();
+        $destinationPath = 'docs/';
 
         if ($file = $request->file('document')) {
-            $destinationPath = 'docs/';
             $fileName = $request->name . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $fileName);
-            $input['document'] = "$fileName";
+            $input['document'] = $fileName;
 
             if ($document->document) {
                 $oldFilePath = public_path($destinationPath . $document->document);
@@ -105,6 +105,17 @@ class DocumentController extends Controller
                     unlink($oldFilePath);
                 }
             }
+        } else if ($request->name != $document->name) {
+            $oldFilePath = public_path($destinationPath . $document->document);
+            $extension = pathinfo($oldFilePath, PATHINFO_EXTENSION);
+            $newFileName = $request->name . '.' . $extension;
+            $newFilePath = public_path($destinationPath . $newFileName);
+
+            if (file_exists($oldFilePath)) {
+                rename($oldFilePath, $newFilePath);
+            }
+
+            $input['document'] = $newFileName;
         }
 
         $document->update($input);
@@ -118,12 +129,20 @@ class DocumentController extends Controller
         return redirect()->route('documents.show', $document->id);
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Document $document)
     {
+        $fileName = $document->document;
+
         $document->delete();
+
+        $filePath = public_path('docs/' . $fileName);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
 
         session()->flash('swal', [
             'icon' => 'success',

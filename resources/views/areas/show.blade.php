@@ -27,19 +27,19 @@
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-4 mb-2">
-                        <a href="{{ route('areas.index') }}" class="btn btn-secondary w-100">
+                        <a href="{{ route('areas.index') }}" class="btn btn-lg btn-secondary w-100">
                             Ir al panel de áreas
                             <i class="fa-solid fa-rotate-left"></i>
                         </a>
                     </div>
                     <div class="col-md-4 mb-2">
-                        <a href="{{ route('areas.edit', $area) }}" class="btn btn-primary w-100">
+                        <a href="{{ route('areas.edit', $area) }}" class="btn btn-lg btn-primary w-100">
                             Editar
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                     </div>
                     <div class="col-md-4 mb-2">
-                        <button onclick="confirmDelete()" class="btn btn-danger w-100">
+                        <button onclick="confirmDelete()" class="btn btn-lg btn-danger w-100">
                             Eliminar
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
