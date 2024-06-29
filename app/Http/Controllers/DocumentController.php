@@ -150,4 +150,23 @@ class DocumentController extends Controller
 
         return redirect()->route('documents.index');
     }
+
+    public function searchDocuments(Request $request)
+    {
+        $search = $request->input('search');
+
+        $documents = Document::where('name', 'LIKE', '%' . $search . '%')->get();
+        
+        if ($documents->isEmpty()) {
+            session()->flash('swal', [
+                'icon' => 'warning',
+                'title' => '¡Atención!',
+                'text' => 'La búsqueda que realizaste no coincide con nuestros registros.'
+            ]);
+
+            return redirect()->back();
+        }
+
+        return view('documents.search', compact('documents', 'search'));
+    }
 }
