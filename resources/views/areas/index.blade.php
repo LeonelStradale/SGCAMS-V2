@@ -29,7 +29,7 @@
                         </strong>
                         <a href="{{ route('areas.create') }}" class="btn btn-success">
                             Añadir nueva área administrativa
-                            <i class="fa-solid fa-file-circle-plus"></i>
+                            <i class="fa-solid fa-folder-plus"></i>
                         </a>
                     </div>
                 @else
@@ -42,7 +42,7 @@
                                 <div class="col-md-8 d-flex flex-row-reverse">
                                     <a href="{{ route('areas.create') }}" class="btn btn-success btn-sm mx-1">
                                         Añadir nueva área administrativa
-                                        <i class="fa-solid fa-file-circle-plus"></i>
+                                        <i class="fa-solid fa-folder-plus"></i>
                                     </a>
                                 </div>
                             </div>

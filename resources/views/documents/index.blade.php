@@ -138,7 +138,7 @@
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
                                                 <form action="{{ route('documents.destroy', $document->id) }}"
-                                                    method="post" id="delete-form-{{ $document->id }}">
+                                                    method="post" id="delete-form-{{ $document->id }}">>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" onclick="confirmDelete({{ $document->id }})" class="btn btn-danger">
