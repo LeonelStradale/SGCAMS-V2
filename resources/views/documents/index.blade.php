@@ -66,18 +66,18 @@
                                                         Ingrese el nombre del documento para realizar su búsqueda dentro del
                                                         sistema.
                                                     </p>
-                                                    <form action="#" method="POST">
+                                                    <form action="{{ route('documents.admin.search') }}" method="POST">
                                                         @csrf
                                                         <div class="row">
                                                             <!-- Nombre -->
                                                             <div class="col-md-12 mb-2">
                                                                 <div class="form-outline">
-                                                                    <label class="form-label text-dark" for="doc">
+                                                                    <label class="form-label text-dark" for="search">
                                                                         Nombre
                                                                     </label>
-                                                                    <input type="text" id="doc"
+                                                                    <input type="text" id="search"
                                                                         class="form-control form-control-lg"
-                                                                        placeholder="ej. F-DIR-36" name="doc" required
+                                                                        placeholder="ej. F-DIR-36" name="search" required
                                                                         autofocus />
                                                                 </div>
                                                             </div>

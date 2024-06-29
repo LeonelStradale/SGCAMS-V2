@@ -169,4 +169,23 @@ class DocumentController extends Controller
 
         return view('documents.search', compact('documents', 'search'));
     }
+
+    public function searchAdminDocuments(Request $request)
+    {
+        $search = $request->input('search');
+
+        $documents = Document::where('name', 'LIKE', '%' . $search . '%')->paginate(10);
+        
+        if ($documents->isEmpty()) {
+            session()->flash('swal', [
+                'icon' => 'warning',
+                'title' => '¡Atención!',
+                'text' => 'La búsqueda que realizaste no coincide con nuestros registros.'
+            ]);
+
+            return redirect()->back();
+        }
+
+        return view('documents.searchAdmin', compact('documents', 'search'));
+    }
 }
