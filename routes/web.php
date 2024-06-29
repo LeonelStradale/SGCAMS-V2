@@ -15,3 +15,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/documents', DocumentController::class)->middleware('auth');
 
 Route::resource('/areas', AreaController::class)->middleware('auth');
+
+Route::get('/areas/{area}/documents', [AreaController::class, 'showDocuments'])->name('areas.documents');

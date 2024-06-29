@@ -86,7 +86,7 @@
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
                                 @foreach ($areas as $area)
                                     <div class="col">
-                                        <a href="{{ route('areas.show', $area->id) }}"
+                                        <a href="{{ route('areas.documents', $area) }}"
                                             class="card text-decoration-none bg-primary text-white card-equal-height">
                                             <div class="card-body d-flex flex-column">
                                                 <h5 class="card-title text-center">{{ $area->name }}</h5>

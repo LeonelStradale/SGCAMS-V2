@@ -102,47 +102,30 @@
                                     <tr class="text-center">
                                         <th>Nombre</th>
                                         <th>Area</th>
-                                        <th>Tipo</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider text-center">
                                     @foreach ($documents as $document)
                                         <tr>
-                                            <th scope="row">{{ $document->name }}</th>
+                                            <th scope="row" class="text-truncate" style="max-width: 450px;">
+                                                {{ $document->name }}</th>
                                             <td>{{ $document->area->name }}</td>
-                                            <td>
-                                                @if ($document->type == 'Documento')
-                                                    <span class="badge text-bg-primary">
-                                                        {{ $document->type }}
-                                                    </span>
-                                                @elseif ($document->type == 'Formato')
-                                                    <span class="badge text-bg-danger">
-                                                        {{ $document->type }}
-                                                    </span>
-                                                @elseif ($document->type == 'Excel')
-                                                    <span class="badge text-bg-success">
-                                                        {{ $document->type }}
-                                                    </span>
-                                                @endif
-                                            </td>
                                             <td class="d-flex justify-content-center">
                                                 <a href="{{ route('documents.show', $document->id) }}"
                                                     class="btn btn-secondary me-2">
-                                                    Mostrar
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
                                                 <a href="{{ route('documents.edit', $document->id) }}"
                                                     class="btn btn-primary me-2">
-                                                    Editar
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
                                                 <form action="{{ route('documents.destroy', $document->id) }}"
-                                                    method="post" id="delete-form-{{ $document->id }}">>
+                                                    method="post" id="delete-form-{{ $document->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="button" onclick="confirmDelete({{ $document->id }})" class="btn btn-danger">
-                                                        Eliminar
+                                                    <button type="button" onclick="confirmDelete({{ $document->id }})"
+                                                        class="btn btn-danger">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
                                                 </form>

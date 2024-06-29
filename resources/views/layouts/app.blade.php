@@ -56,7 +56,7 @@
                                 </li>
                             @endif
                         @else
-                        <a href="{{ route('documents.index') }}" class="nav-link">
+                        <a href="{{ route('home') }}" class="nav-link">
                             Ver documentos
                             <i class="fa-solid fa-file"></i>
                         </a>

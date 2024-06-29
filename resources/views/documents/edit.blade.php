@@ -128,7 +128,7 @@
                                             Haz click aquí para descargar
                                             <i class="fa-solid fa-file-word"></i>
                                         </a>
-                                    @elseif (in_array(pathinfo($document->document, PATHINFO_EXTENSION), ['xls', 'xlsx']))
+                                    @elseif (in_array(pathinfo($document->document, PATHINFO_EXTENSION), ['xls', 'xlsx', 'csv']))
                                         <label class="form-label">
                                             Visualizar archivo
                                         </label>
