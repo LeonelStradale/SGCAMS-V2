@@ -35,7 +35,6 @@ class DocumentController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'type' => 'required|string',
             'document' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,csv',
             'area_id' => 'required|exists:areas,id',
         ]);
@@ -86,7 +85,6 @@ class DocumentController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'type' => 'required|string',
             'document' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,csv',
             'area_id' => 'required|exists:areas,id',
         ]);

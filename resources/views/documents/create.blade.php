@@ -1,7 +1,3 @@
-@php
-    use App\Enums\DocumentType;
-@endphp
-
 @extends('layouts.app')
 
 @section('content')
@@ -74,31 +70,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <!-- Tipo -->
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="type">
-                                            Tipo de Documento
-                                        </label>
-                                        <select class="form-control form-control-lg @error('type') is-invalid @enderror"
-                                            id="type" name="type" required>
-                                            <option selected disabled>Escoge un tipo</option>
-                                            @foreach (DocumentType::cases() as $type)
-                                                <option value="{{ $type->value }}"
-                                                    {{ old('type') == $type->value ? 'selected' : '' }}>
-                                                    {{ $type->value }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('type')
-                                            <span class="invalid-feedback text-center" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
                                 <!-- Documento -->
-                                <div class="col-md-6 mb-2">
+                                <div class="col-md-12 mb-2">
                                     <div class="form-outline">
                                         <label class="form-label" for="document">
                                             Subir archivo

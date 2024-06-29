@@ -43,18 +43,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <!-- Tipo -->
-                            <div class="col-md-6 mb-6">
-                                <div class="form-outline">
-                                    <label class="form-label" for="type">
-                                        Tipo de Documento
-                                    </label>
-                                    <input type="text" id="type" class="form-control form-control-lg"
-                                        value="{{ $document->type }}" disabled />
-                                </div>
-                            </div>
                             <!-- Documento -->
-                            <div class="col-md-6 mb-6">
+                            <div class="col-md-12 mb-6">
                                 @if (in_array(pathinfo($document->document, PATHINFO_EXTENSION), ['doc', 'docx']))
                                     <label class="form-label">
                                         Visualizar archivo

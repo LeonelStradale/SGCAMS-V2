@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedInteger('area_id');
             $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
             $table->string('name');
-            $table->string('type');
             $table->string('document');
             $table->timestamps();
         });
